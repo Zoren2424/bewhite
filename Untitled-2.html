@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOW ur white</title>
+    <style>
+        /* Stili per il box bianco che contiene il testo */
+        .text-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #4CAF50; /* Bordo verde per il box */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera per il box */
+            width: fit-content;
+            margin: 20px auto;
+        }
+
+        /* Stili per la barra di caricamento */
+        #loading-bar {
+            width: 0;
+            height: 30px;
+            background-color: #4CAF50;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        /* Stili per la scritta h2 con animazione saltellante */
+        #h2-text {
+            display: none; /* Nascondiamo inizialmente */
+            margin-top: 20px;
+            font-size: 2rem;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Stili per l'immagine sfocata che diventa nitida */
+        #generated-image {
+            display: none;
+            margin-top: 20px;
+            filter: blur(10px); /* Iniziamo con l'immagine sfocata */
+            transition: filter 2s ease-out; /* Transizione per l'effetto nitido */
+        }
+
+        /* Effetto fuochi d'artificio */
+        #fireworks-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+        }
+
+        .firework {
+            position: absolute;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            background: #FF5733;
+            animation: firework-animation 1s linear infinite;
+        }
+
+        @keyframes firework-animation {
+            0% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4) translateY(-300px);
+                opacity: 0;
+            }
+        }
+
+        /* Scritta congratulazioni rotante, centrata e vicina all'immagine */
+        .rotate-text {
+            position: absolute;
+            top: 50%; /* Centra verticalmente rispetto alla pagina */
+            left: 50%; /* Centra orizzontalmente rispetto alla pagina */
+            transform: translate(-50%, -50%); /* Centra perfettamente rispetto al proprio punto */
+            font-size: 2rem;
+            font-weight: bold;
+            color: black; /* Scritta nera */
+            animation: rotateText 5s infinite linear;
+            display: none; /* Nascondiamo la scritta inizialmente */
+        }
+
+        @keyframes rotateText {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Animazione di movimento per lo sfondo */
+        @keyframes moveBackground {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 40px 40px; /* Più veloce movimento con l'immagine di 40px */
+            }
+        }
+
+        /* Sostituisci il cursore con un'immagine personalizzata */
+        body {
+            background-repeat: repeat;
+            background-size: 40px 40px; /* L'immagine di sfondo è piccolissima (40px x 40px) */
+            animation: moveBackground 2s linear infinite; /* Movimento più veloce dello sfondo */
+        }
+    </style>
+</head>
+<body>
+    <!-- Titolo cliccabile con box bianco -->
+    <div class="text-box">
+        <h1 id="click-here">click here, the algorithm will generate a new white and clean skin for you</h1>
+    </div>
+
+    <!-- Barra di caricamento -->
+    <div id="loading-bar"></div>
+
+    <!-- Testo che comparirà dopo il completamento del caricamento -->
+    <div class="text-box">
+        <h2 id="h2-text">Now this is your skin</h2>
+    </div>
+
+    <!-- Immagine che comparirà alla fine del caricamento -->
+    <img id="generated-image" src="33743.jpg" alt="Generated Skin">
+
+    <!-- Scritta "Congratulazioni" che gira accanto all'immagine -->
+    <div id="congratulation-text" class="rotate-text">
+        <div class="text-box">
+            Congratss!!!!!!! 😂😂😂
+        </div>
+    </div>
+
+    <!-- Contenitore per i fuochi d'artificio -->
+    <div id="fireworks-container"></div>
+
+    <script>
+        const clickHereElement = document.getElementById('click-here');
+        const generatedImage = document.getElementById('generated-image');
+        const loadingBar = document.getElementById('loading-bar');
+        const h2Text = document.getElementById('h2-text');
+        const fireworksContainer = document.getElementById('fireworks-container');
+        const congratulationText = document.getElementById('congratulation-text');
+
+        clickHereElement.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // 1. Mostra la barra di caricamento e inizia il riempimento
+            loadingBar.style.width = '0';
+            let width = 0;
+            let loadingInterval = setInterval(function() {
+                if (width >= 100) {
+                    clearInterval(loadingInterval);
+
+                    // 2. Mostra l'immagine e la scritta h2
+                    generatedImage.style.display = 'block';
+                    h2Text.style.display = 'block';
+
+                    // 3. Applicare l'effetto sfocato (immagine che diventa nitida dopo 2 secondi)
+                    setTimeout(function() {
+                        generatedImage.style.filter = 'blur(0px)';
+                    }, 2000); // 2 secondi dopo il caricamento
+
+                    // 4. Mostra la scritta congratulazioni che gira
+                    congratulationText.style.display = 'block';
+
+                    // 5. Cambia il cursore (quando l'immagine è visibile)
+                    document.body.style.cursor = 'url("file:///C:/Users/lorenzorusso/Desktop/wow.png"), auto'; // Modifica il percorso in base alla tua posizione
+
+                    // Cambia lo sfondo per usare la stessa immagine del cursore
+                    document.body.style.backgroundImage = 'url("file:///C:/Users/lorenzorusso/Desktop/wow.png")';
+
+                    // 6. Attiva l'animazione dei fuochi d'artificio
+                    triggerFireworks();
+
+                } else {
+                    width++;
+                    loadingBar.style.width = width + '%';
+                }
+            }, 100); // Riempimento della barra in 10 secondi (100ms per incrementare ogni volta)
+
+            // 7. Animazione saltellante per il testo h2 (già impostato con CSS)
+        });
+
+        // Funzione per generare i fuochi d'artificio
+        function triggerFireworks() {
+            fireworksContainer.style.display = 'block'; // Mostra il contenitore dei fuochi d'artificio
+
+            // Genera fuochi d'artificio da tutte e 4 le direzioni (bordo dell'immagine)
+            const imgRect = generatedImage.getBoundingClientRect();
+            const positions = [
+                { top: imgRect.top, left: imgRect.left }, // Bordo superiore sinistro
+                { top: imgRect.top, left: imgRect.right }, // Bordo superiore destro
+                { top: imgRect.bottom, left: imgRect.left }, // Bordo inferiore sinistro
+                { top: imgRect.bottom, left: imgRect.right } // Bordo inferiore destro
+            ];
+
+            positions.forEach(pos => {
+                for (let i = 0; i < 5; i++) { // Generiamo più fuochi d'artificio
+                    const firework = document.createElement('div');
+                    firework.classList.add('firework');
+                    firework.style.top = pos.top + 'px';
+                    firework.style.left = pos.left + 'px';
+                    firework.style.animationDuration = Math.random() * 2 + 1 + 's'; // Durata casuale dell'animazione
+
+                    fireworksContainer.appendChild(firework);
+
+                    // Rimuoviamo il fuoco d'artificio dopo che è finito
+                    setTimeout(function() {
+                        firework.remove();
+                    }, 3000); // Rimuove il fuoco d'artificio dopo 3 secondi
+                }
+            });
+        }
+    </script>
+</body>
+</html>
